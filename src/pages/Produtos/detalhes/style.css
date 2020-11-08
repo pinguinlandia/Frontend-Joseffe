@@ -1,0 +1,39 @@
+.usuario-info {
+    max-width: 700px;
+    margin: 20px auto 0;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    
+}
+ 
+.usuario-info h3 {
+    font-size: 20px;
+    line-height: 24px;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.usuario-info p {
+    line-height: 24px;
+    margin-top: 5px;
+}
+
+.usuario-info a{
+    text-decoration: none;
+    color: black;
+    border: 1px solid;
+    margin: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.usuario-info a:hover{
+    border: 3px solid #632121;
+    transition: 1s;
+    font-weight: bold;
+
+}
