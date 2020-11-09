@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import './style.css';
  
-class EditarProduto extends Component {
+class EditarPedido extends Component {
     constructor(props) {
         super(props);
  
@@ -33,12 +33,12 @@ class EditarProduto extends Component {
         const { cd_pedido } = this.props.match.params;
  
         fetch(`http://localhost:3003/sistema/pedidos/${cd_pedido}`)
-            .then(data => {
-                data.json().then(data => {
-                    if (data.error) {
-                        this.setState({ erro: data.error });
+            .then(pedido => {
+                pedido.json().then(pedido => {
+                    if (pedido.error) {
+                        this.setState({ erro: pedido.error });
                     } else {
-                        this.setState({ produto: data });
+                        this.setState({ pedido: pedido });
                     }
                 });
             })
@@ -54,7 +54,7 @@ class EditarProduto extends Component {
             return (
                 <form onSubmit={this.handleSubmit}>
                     <fieldset>
-                        <legend>Editar Pedido</legend>
+                        <legend>Editar pedido</legend>
                         <div className="pedido-update">
                             <label htmlFor="qt_produto">Quantidade do produto</label>
                             <br />
@@ -64,14 +64,14 @@ class EditarProduto extends Component {
                                 name="qt_produto"
                                 placeholder="Nome"
                                 minLength="1"
-                                maxLength="100"
+                                maxLength="99"
                                 required
                                 value={this.state.pedido.qt_produto}
                                 onChange={this.handleInputChange}
                             />
                         </div>
                         <div className="pedido-update">
-                            <label htmlFor="fk_cd_cliente"> Código do Cliente </label>
+                            <label htmlFor="fk_cd_cliente"> Código do cliente </label>
                             <br />
                             <input
                                 type="text"
@@ -123,30 +123,20 @@ class EditarProduto extends Component {
     };
  
     handleSubmit = event => {
-        const { cd_pedido } = this.state.usuario;
+        const { cd_pedido } = this.state.pedido;
  
-        fetch(`http://localhost:3003/sistema/pedido/${cd_pedido}`, {
+        fetch(`http://localhost:3003/sistema/pedidos/${cd_pedido}`, {
             method: "put",
-            body: JSON.stringify(this.state.produto),
+            body: JSON.stringify(this.state.pedido),
             headers: {
                 "Content-Type": "application/json"
             }
         })
-            .then(data => {
-                if (data.ok) {
-                    this.setState({ redirect: true });
-                } else {
-                    data.json().then(data => {
-                        if (data.error) {
-                            this.setState({ erro: data.error });
-                        }
-                    });
-                }
-            })
-            .catch(erro => this.setState({ erro: erro }));
+        
+        this.setState({ redirect: true });
  
         event.preventDefault();
     };
 }
  
-export default EditarProduto;
+export default EditarPedido;

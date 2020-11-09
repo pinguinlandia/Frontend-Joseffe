@@ -26,33 +26,19 @@ class DeletarProduto extends Component {
         }
     }
  
-    componentDidMount() {
-        const { cd_produto } = this.props.match.params;
- 
-        fetch(`http://localhost:3003/sistema/produtos/${cd_produto}`)
-            .then(data => {
-                data.json().then(data => {
-                    if (data.error) {
-                        this.setState({ erro: data.error });
-                    } else {
-                        this.setState({ usuario: data });
-                    }
-                });
-            })
-            .catch(erro => this.setState({ erro: erro }));
-    }
+    
  
     render() {
         const { redirect } = this.state;
  
         if (redirect) {
-            return <Redirect to="/" />;
+            return <Redirect to="/Produtos" />;
         } else {
             return (
                 <fieldset>                    
                     <div className="produto-delete">
                     <legend>Deletar Produto</legend>
-                        <label htmlFor="nome">{this.state.produto.nome} </label>
+                        <label htmlFor="nome">{this.state.produto.nm_produto} </label>
                         <p>Tem certeza que deseja deletar este registro?</p>
                         <div className="button">
                         <button
@@ -75,18 +61,8 @@ class DeletarProduto extends Component {
         fetch(`http://localhost:3003/sistema/produtos/${cd_produto}`, {
             method: "delete"
         })
-            .then(data => {
-                if (data.ok) {
-                    this.setState({ redirect: true });
-                } else {
-                    data.json().then(data => {
-                        if (data.error) {
-                            this.setState({ erro: data.error });
-                        }
-                    });
-                }
-            })
-            .catch(erro => this.setState({ erro: erro }));
+
+        this.setState({ redirect: true });
  
         event.preventDefault();
     };

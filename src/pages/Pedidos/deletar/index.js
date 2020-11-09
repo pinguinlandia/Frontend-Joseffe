@@ -30,16 +30,15 @@ class DeletarProduto extends Component {
         const { cd_pedido } = this.props.match.params;
  
         fetch(`http://localhost:3003/sistema/pedidos/${cd_pedido}`)
-            .then(data => {
-                data.json().then(data => {
-                    if (data.error) {
-                        this.setState({ erro: data.error });
-                    } else {
-                        this.setState({ usuario: data });
-                    }
-                });
-            })
-            .catch(erro => this.setState({ erro: erro }));
+            
+        .then(pedido => {
+            pedido.json().then(pedido => {
+                if (pedido.error) {
+                    this.setState({ erro: pedido.error });
+                } 
+            });
+        })
+        .catch(erro => this.setState({ erro: erro }));
     }
  
     render() {
@@ -72,18 +71,8 @@ class DeletarProduto extends Component {
         fetch(`http://localhost:3003/sistema/pedidos/${cd_pedido}`, {
             method: "delete"
         })
-            .then(data => {
-                if (data.ok) {
-                    this.setState({ redirect: true });
-                } else {
-                    data.json().then(data => {
-                        if (data.error) {
-                            this.setState({ erro: data.error });
-                        }
-                    });
-                }
-            })
-            .catch(erro => this.setState({ erro: erro }));
+        
+        this.setState({ redirect: true });
  
         event.preventDefault();
     };

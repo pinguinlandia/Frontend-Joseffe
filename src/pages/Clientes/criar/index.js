@@ -102,8 +102,7 @@ class CriarClientes extends Component {
                                 id="nm_senha"
                                 name="nm_senha"
                                 placeholder="Senha"
-                                required
-                                value={this.state.cliente.nm_senha}
+                                required value = {this.state.cliente.nm_senha}
                                 onChange={this.handleInputChange}
                             />
                         </div> 

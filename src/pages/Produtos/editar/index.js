@@ -32,12 +32,12 @@ class EditarProduto extends Component {
         const { cd_produto } = this.props.match.params;
  
         fetch(`http://localhost:3003/sistema/produtos/${cd_produto}`)
-            .then(data => {
-                data.json().then(data => {
-                    if (data.error) {
-                        this.setState({ erro: data.error });
+            .then(produto => {
+                produto.json().then(produto => {
+                    if (produto.error) {
+                        this.setState({ erro: produto.error });
                     } else {
-                        this.setState({ produto: data });
+                        this.setState({ produto: produto });
                     }
                 });
             })
@@ -111,27 +111,17 @@ class EditarProduto extends Component {
     };
  
     handleSubmit = event => {
-        const { cd_produto } = this.state.usuario;
+        const { cd_produto } = this.state.produto;
  
-        fetch(`http://localhost:3003/sistema/produto/${cd_produto}`, {
+        fetch(`http://localhost:3003/sistema/produtos/${cd_produto}`, {
             method: "put",
             body: JSON.stringify(this.state.produto),
             headers: {
                 "Content-Type": "application/json"
             }
         })
-            .then(data => {
-                if (data.ok) {
-                    this.setState({ redirect: true });
-                } else {
-                    data.json().then(data => {
-                        if (data.error) {
-                            this.setState({ erro: data.error });
-                        }
-                    });
-                }
-            })
-            .catch(erro => this.setState({ erro: erro }));
+        
+        this.setState({ redirect: true });
  
         event.preventDefault();
     };

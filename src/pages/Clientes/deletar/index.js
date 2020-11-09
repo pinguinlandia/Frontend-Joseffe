@@ -30,35 +30,34 @@ class DeletarClientes extends Component {
         const { cd_cliente } = this.props.match.params;
  
         fetch(`http://localhost:3003/sistema/clientes/${cd_cliente}`)
-            .then(data => {
-                data.json().then(data => {
-                    if (data.error) {
-                        this.setState({ erro: data.error });
-                    } else {
-                        this.setState({ usuario: data });
-                    }
-                });
-            })
-            .catch(erro => this.setState({ erro: erro }));
+            
+        .then(data => { 
+            data.json().then(data => {
+                if (data.error) {
+                    this.setState({ erro: data.error });
+                } else {
+                    this.setState({ cliente: data });
+                }
+            });
+        })
+        .catch(erro => this.setState({ erro: erro }));
     }
  
     render() {
         const { redirect } = this.state;
  
         if (redirect) {
-            return <Redirect to="/cliente" />;
+            return <Redirect to="/clientes" />;
         } else {
             return (
                 <fieldset>
                     
                     <div className="cliente-delete">
-                    <legend>Deletar Produto</legend>
-                        <label htmlFor="nome">{this.state.cliente.nome} </label>
+                    <legend>Deletar cliente</legend>
+                        <label htmlFor="nome">{this.state.cliente.nm_cliente}</label>
                         <p>Tem certeza que deseja deletar este registro?</p>
  
-                        <button
-                            onClick={this.handleClick}
-                        >
+                        <button onClick={this.handleClick}>
                             Remover
                         </button>
                         <br /><br />
@@ -75,18 +74,8 @@ class DeletarClientes extends Component {
         fetch(`http://localhost:3003/sistema/clientes/${cd_cliente}`, {
             method: "delete"
         })
-            .then(data => {
-                if (data.ok) {
-                    this.setState({ redirect: true });
-                } else {
-                    data.json().then(data => {
-                        if (data.error) {
-                            this.setState({ erro: data.error });
-                        }
-                    });
-                }
-            })
-            .catch(erro => this.setState({ erro: erro }));
+
+        this.setState({ redirect: true });
  
         event.preventDefault();
     };

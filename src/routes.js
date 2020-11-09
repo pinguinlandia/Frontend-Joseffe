@@ -5,7 +5,7 @@ import MenuProdutos from './pages/Produtos/main';
 import DetalhesProdutos from './pages/Produtos/detalhes/index';
 import CriarProdutos from './pages/Produtos/criar/index';
 import EditarProdutos from './pages/Produtos/editar/index';
-import DeletarProduto from './pages/Produtos/deletar';
+import DeletarProduto from './pages/Produtos/deletar/index';
 
 import MenuClientes from './pages/Clientes/main';
 import DetalhesClientes from './pages/Clientes/detalhes/index';
@@ -32,15 +32,15 @@ const Routes = () => (
 
             <Route exact path="/clientes" component={MenuClientes} />
             <Route path="/criarClientes" component={CriarClientes} />
-            <Route path="/clientes/:cd_clientes" component={DetalhesClientes} />
-            <Route path="/editarClientes/:cd_clientes" component={EditarClientes} />
-            <Route path="/deletarClientes/:cd_clientes" component={DeletarClientes} />
+            <Route path="/clientes/:cd_cliente" component={DetalhesClientes} />
+            <Route path="/editarClientes/:cd_cliente" component={EditarClientes} />
+            <Route path="/deletarClientes/:cd_cliente" component={DeletarClientes} />
 
             <Route exact path="/pedidos" component={MenuPedidos} />
             <Route path="/criarPedidos" component={CriarPedidos} />
-            <Route path="/pedidos/:cd_pedidos" component={DetalhesPedidos} />
-            <Route path="/editarPedidos/:cd_pedidos" component={EditarPedidos} />
-            <Route path="/deletarPedidos/:cd_pedidos" component={DeletarPedidos} />
+            <Route path="/pedidos/:cd_pedido" component={DetalhesPedidos} />
+            <Route path="/editarPedidos/:cd_pedido" component={EditarPedidos} />
+            <Route path="/deletarPedidos/:cd_pedido" component={DeletarPedidos} />
             
         </Switch>
     </BrowserRouter>

@@ -42,9 +42,10 @@ export default class Main extends Component {
                     <tbody>
                         {pedido.map((pedido) => (
                             <tr>
-                                <th scope="row">{pedido.qt_produto}</th>
+                                <th scope="row">{pedido.cd_pedido}</th>
+                                <td>{pedido.qt_produto}</td>
                                 <td>{pedido.fk_cd_cliente}</td>
-                                <td>{pedido.fk_cd_produto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
+                                <td>{pedido.fk_cd_produto}</td>
                                 
                                 <td><Link to={`/pedidos/${pedido.cd_pedido}`}> <button type="button" class="btn btn-primary">Detalhes</button> </Link> </td>
                                 <td><Link to={`/editarPedidos/${pedido.cd_pedido}`}> <button type="button" class="btn btn-warning">Atualizar</button> </Link></td>

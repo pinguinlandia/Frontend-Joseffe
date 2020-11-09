@@ -22,9 +22,12 @@ export default class Detalhes extends Component {
  
         return (
             <div className="pedido-info">
-                <h1> {pedido.nm_produto} </h1>
-                <h1> {pedido.vl_preco_produto} </h1>
-                <h1> {pedido.createdAt} </h1>               
+                <h3>Quantidade de produto:</h3>
+                <p> {pedido.qt_produto} </p>
+                <h3>código do cliente:</h3>
+                <p> {pedido.fk_cd_cliente} </p>
+                <h3>Código do produto:</h3>
+                <p> {pedido.fk_cd_produto} </p>               
                 <br />
                 <Link to={`/pedidos`}> Voltar </Link> <br />
                 <Link to={`/editarPedido/${pedido.cd_pedido}`}> Editar </Link> <br />

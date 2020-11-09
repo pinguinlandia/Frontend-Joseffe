@@ -35,12 +35,12 @@ class EditarClientes extends Component {
         const { cd_cliente } = this.props.match.params;
  
         fetch(`http://localhost:3003/sistema/clientes/${cd_cliente}`)
-            .then(data => {
-                data.json().then(data => {
-                    if (data.error) {
-                        this.setState({ erro: data.error });
+            .then(cliente => {
+                cliente.json().then(cliente => {
+                    if (cliente.error) {
+                        this.setState({ erro: cliente.error });
                     } else {
-                        this.setState({ produto: data });
+                        this.setState({ cliente: cliente });
                     }
                 });
             })
@@ -127,7 +127,7 @@ class EditarClientes extends Component {
  
                         <button type="submit" className="btn btn-primary">
                             Atualizar
-                    </button>
+                        </button>
                     </fieldset>
                 </form>
             );
@@ -156,18 +156,8 @@ class EditarClientes extends Component {
                 "Content-Type": "application/json"
             }
         })
-            .then(data => {
-                if (data.ok) {
-                    this.setState({ redirect: true });
-                } else {
-                    data.json().then(data => {
-                        if (data.error) {
-                            this.setState({ erro: data.error });
-                        }
-                    });
-                }
-            })
-            .catch(erro => this.setState({ erro: erro }));
+        
+        this.setState({ redirect: true });
  
         event.preventDefault();
     };
