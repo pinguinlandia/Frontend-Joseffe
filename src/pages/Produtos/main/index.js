@@ -45,7 +45,7 @@ export default class Main extends Component {
                             <tr>
                                 <th scope="row">{produto.cd_produto}</th>
                                 <td>{produto.nm_produto}</td>
-                                <td>{produto.vl_preco_produto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
+                                <td>{produto.vl_preco_produto('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
                                 
                                 <td><Link to={`/produtos/${produto.cd_produto}`}> <button type="button" class="btn btn-primary">Detalhes</button> </Link> </td>
                                 <td><Link to={`/editarProdutos/${produto.cd_produto}`}> <button type="button" class="btn btn-warning">Atualizar</button> </Link></td>
