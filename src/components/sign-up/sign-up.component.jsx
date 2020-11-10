@@ -39,7 +39,7 @@ class SignUp extends React.Component{
                 //password
             //)
             //await createUserProfileDocument(user,{ displayName})
-            fetch("http://localhost:3003/sistema/clientes", {
+            fetch(`${process.env.REACT_APP_API_URL}/sistema/clientes`, {
               method: "post",
               body: JSON.stringify(this.state),
               headers: {

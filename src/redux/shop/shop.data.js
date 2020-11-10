@@ -8,7 +8,7 @@ const SHOP_DATA = [
 ]
 
 const request = async () => {
-  const dados = await fetch(`http://localhost:3003/sistema/produtos`);
+  const dados = await fetch(`${process.env.REACT_APP_API_URL}/sistema/produtos`);
   const json = await dados.json();
   return json;
 }

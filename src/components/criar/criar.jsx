@@ -17,7 +17,7 @@ class Criar extends React.Component{
     handleSubmit = async event => {
         event.preventDefault();
         try{            
-            fetch("http://localhost:3003/sistema/produtos", {
+            fetch(`${process.env.REACT_APP_API_URL}/sistema/produtos`, {
               method: "post",
               body: JSON.stringify(this.state),
               headers: {

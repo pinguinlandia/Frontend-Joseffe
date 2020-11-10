@@ -21,7 +21,7 @@ class SignIn extends React.Component{
         //const {email, password} = this.state;
 
         try{
-          fetch("http://localhost:3003/sistema/logar",{
+          fetch(`${process.env.REACT_APP_API_URL}/sistema/logar`,{
             method: "post",
             body: JSON.stringify(this.state),
             headers: {
