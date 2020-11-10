@@ -34,7 +34,7 @@ class EditarClientes extends Component {
     componentDidMount() {
         const { cd_cliente } = this.props.match.params;
  
-        fetch(`http://localhost:3003/sistema/clientes/${cd_cliente}`)
+        fetch(`${process.env.REACT_APP_API_URL}/sistema/clientes/${cd_cliente}`)
             .then(cliente => {
                 cliente.json().then(cliente => {
                     if (cliente.error) {
@@ -149,7 +149,7 @@ class EditarClientes extends Component {
     handleSubmit = event => {
         const { cd_cliente } = this.state.cliente;
  
-        fetch(`http://localhost:3003/sistema/clientes/${cd_cliente}`, {
+        fetch(`${process.env.REACT_APP_API_URL}/sistema/clientes/${cd_cliente}`, {
             method: "put",
             body: JSON.stringify(this.state.cliente),
             headers: {

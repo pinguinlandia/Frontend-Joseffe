@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import './style.css';
+
  
 class CriarClientes extends Component {
     constructor(props) {
@@ -128,7 +129,7 @@ class CriarClientes extends Component {
     };
  
     handleSubmit = event => {
-        fetch("http://localhost:3003/sistema/clientes", {
+        fetch("${process.env.REACT_APP_API_URL}/sistema/clientes", {
             method: "post",
             body: JSON.stringify(this.state.cliente),
             headers: {

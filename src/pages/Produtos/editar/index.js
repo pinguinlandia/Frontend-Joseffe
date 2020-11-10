@@ -31,7 +31,7 @@ class EditarProduto extends Component {
     componentDidMount() {
         const { cd_produto } = this.props.match.params;
  
-        fetch(`http://localhost:3003/sistema/produtos/${cd_produto}`)
+        fetch(`${process.env.REACT_APP_API_URL}/sistema/produtos/${cd_produto}`)
             .then(produto => {
                 produto.json().then(produto => {
                     if (produto.error) {
@@ -113,7 +113,7 @@ class EditarProduto extends Component {
     handleSubmit = event => {
         const { cd_produto } = this.state.produto;
  
-        fetch(`http://localhost:3003/sistema/produtos/${cd_produto}`, {
+        fetch(`${process.env.REACT_APP_API_URL}/sistema/produtos/${cd_produto}`, {
             method: "put",
             body: JSON.stringify(this.state.produto),
             headers: {

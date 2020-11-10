@@ -10,7 +10,7 @@ export default class Detalhes extends Component {
     componentDidMount() {
         const { cd_cliente } = this.props.match.params;
  
-        fetch(`http://localhost:3003/sistema/clientes/${cd_cliente}`)
+        fetch(`${process.env.REACT_APP_API_URL}/sistema/clientes/${cd_cliente}`)
             .then(cliente =>
                 cliente.json().then(cliente => this.setState({ cliente }))
             )
